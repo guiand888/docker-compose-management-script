@@ -53,7 +53,8 @@ while [[ $command -ne 7 ]]; do
       echo "How do you want to proceed?"
       echo "1. List mode"
       echo "2. Prompt mode"
-      echo "3. back"
+      echo "3. All projects"
+      echo "4. back"
       read mode
     else
       mode=1
@@ -134,6 +135,20 @@ while [[ $command -ne 7 ]]; do
         if [ "$answer" != "back" ] && [ "$cmd" == "up -d" ]; then
           eval "docker compose -f swag/docker-compose.yml $cmd"
         fi
+        break
+        ;;
+      3)
+        # All projects mode
+        for dir in "${dirs[@]}"; do
+          eval "docker compose -f ${dir}docker-compose.yml $cmd"
+          if [ "$command" -eq 4 ]; then
+            eval "docker compose -f ${dir}docker-compose.yml $cmd2"
+            eval "docker compose -f ${dir}docker-compose.yml $cmd3"
+          fi
+        done
+        break
+        ;;
+      4)
         break
         ;;
       *)
