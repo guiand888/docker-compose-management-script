@@ -63,7 +63,7 @@ while [[ $command -ne 7 ]]; do
 
   prompt_mode
 
-  while [[ $mode -ne 3 ]]; do
+  while [[ $mode -ne 4 ]]; do
     # Iterate through each directory in the current location
     dirs=(*/)
     case $mode in
